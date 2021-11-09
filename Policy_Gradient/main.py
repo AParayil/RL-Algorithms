@@ -1,12 +1,14 @@
 """
-This is the main file for Policy gradient implementation in continuous and discrete space
+This is the main program for Reinforce implementation in continuous and discrete action space
+This implementation is a modified version of https://github.com/VXU1230/Medium-Tutorials/tree/master/policy_gradient
+Options: Continuous or discrete action space
 """
 import gym
 import ipdb
-from  policy_gradient import  PolicyGradient
+from policy_gradient import  Reinforce
 
 if __name__ == '__main__':
-    env = gym.make("MountainCarContinuous-v0") # CartPole-v0")
+    env = gym.make("MountainCarContinuous-v0")
     if type(env.action_space) == gym.spaces.discrete.Discrete:
         action_space_type = "discrete"
         print("Discrete action space")
@@ -14,6 +16,6 @@ if __name__ == '__main__':
         action_space_type = "continuous"
         print("Continuous action space")
 
-
-    model = PolicyGradient(env, action_space_type, max_ep_len= env._max_episode_steps)
+    model = Reinforce(env, action_space_type, max_ep_len= env._max_episode_steps)
     model.train()
+
